@@ -1,5 +1,8 @@
 .tscache
 .baseDir.ts
 .env
+
 dist
 node_modules
+
+notes.md
