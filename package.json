@@ -21,7 +21,8 @@
     "dotenv": "^5.0.1",
     "errorhandler": "^1.5.0",
     "express": "^4.16.2",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "sequelize": "^4.37.2"
   },
   "devDependencies": {
     "@types/body-parser": "1.16.8",
@@ -30,6 +31,7 @@
     "@types/method-override": "0.0.31",
     "@types/morgan": "^1.7.35",
     "@types/node": "^9.4.7",
+    "@types/sequelize": "^4.27.10",
     "concurrently": "^3.5.1",
     "jest": "^22.4.2",
     "nodemon": "^1.12.1",
