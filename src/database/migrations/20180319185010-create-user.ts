@@ -5,7 +5,7 @@ import {
 
 export = {
     up: (queryInterface: QueryInterface, Sequelize: SequelizeStatic) => {
-        return queryInterface.createTable('users', {
+        return queryInterface.createTable('user', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
@@ -25,12 +25,12 @@ export = {
                 type: Sequelize.STRING
             },
 
-            createdAt: {
+            created_at: {
                 allowNull: false,
                 type: Sequelize.DATE
             },
 
-            updatedAt: {
+            updated_at: {
                 allowNull: false,
                 type: Sequelize.DATE
             }
@@ -38,6 +38,6 @@ export = {
     },
 
     down: (queryInterface: QueryInterface, Sequelize: SequelizeStatic) => {
-        return queryInterface.dropTable('users');
+        return queryInterface.dropTable('user');
     }
 };

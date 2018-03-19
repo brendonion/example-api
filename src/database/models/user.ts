@@ -1,7 +1,7 @@
 import {
     Sequelize,
     DataTypes
-} from 'sequelize';
+} from "sequelize";
 
 export interface UserAttributes {
     first_name ? : string;
@@ -12,8 +12,8 @@ export interface UserAttributes {
 
 export interface UserInstance {
     id: number;
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 
     first_name: string;
     last_name: string;
@@ -21,7 +21,7 @@ export interface UserInstance {
 
 }
 
-export = (sequelize: Sequelize, DataTypes: DataTypes) => {
+export default (sequelize: Sequelize, DataTypes: DataTypes) => {
     var user = sequelize.define('user', {
         first_name: DataTypes.STRING,
         last_name: DataTypes.STRING,
