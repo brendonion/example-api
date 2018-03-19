@@ -1,6 +1,6 @@
 import * as http from "http";
 import * as dotenv from "dotenv";
-import server from "./server";
+import server from "./Server";
 
 const debug = require("debug")("express:server");
 
