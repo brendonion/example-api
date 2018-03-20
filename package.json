@@ -13,7 +13,7 @@
     "watch-node": "nodemon dist/index.js",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "test": "jest --forceExit --coverage --verbose --runInBand",
-    "watch-test": "jest --watch"
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -22,6 +22,7 @@
     "dotenv": "^5.0.1",
     "errorhandler": "^1.5.0",
     "express": "^4.16.2",
+    "express-validator": "^5.0.3",
     "jwt-simple": "^0.5.1",
     "moment": "^2.21.0",
     "morgan": "^1.9.0",
@@ -36,6 +37,8 @@
     "@types/body-parser": "1.16.8",
     "@types/cookie-parser": "^1.4.1",
     "@types/errorhandler": "0.0.32",
+    "@types/express-validator": "^3.0.0",
+    "@types/jest": "^22.2.0",
     "@types/jwt-simple": "^0.5.33",
     "@types/method-override": "0.0.31",
     "@types/morgan": "^1.7.35",
@@ -43,10 +46,13 @@
     "@types/passport": "^0.4.3",
     "@types/passport-jwt": "^3.0.1",
     "@types/sequelize": "^4.27.10",
+    "@types/supertest": "^2.0.4",
     "concurrently": "^3.5.1",
     "jest": "^22.4.2",
     "nodemon": "^1.12.1",
     "sequelize-cli-typescript": "^3.2.0-c",
+    "supertest": "^3.0.0",
+    "ts-jest": "^22.4.2",
     "ts-node": "^5.0.1",
     "typescript": "^2.6.1"
   }

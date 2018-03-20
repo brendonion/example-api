@@ -37,6 +37,5 @@ Object.keys(db).forEach((modelName: string) => {
 
 db.sequelize = sequelize;
 db.Sequelize = ORM;
-console.log(db.user);
 
 export default <DbConnection>db;

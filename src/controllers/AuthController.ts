@@ -4,6 +4,7 @@ import * as passport from "passport";
 import * as moment from "moment";
 import * as bcrypt from "bcryptjs";
 import { Strategy, ExtractJwt } from "passport-jwt";
+import { validationResult } from "express-validator/check";
 import { UserInstance } from "../database/models/user";
 import { getUserByEmail, createUser } from "../queries/user";
 
@@ -50,10 +51,12 @@ class AuthController {
 
   public login = async (req: express.Request, res: express.Response) => {
     try {
-      // TODO: validate email and password
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        res.status(422).json({ message: "", errors: errors.mapped() });
+      }
 
       const user = await getUserByEmail(req.body.email);
-
       if (!user) throw "User not found";
 
       bcrypt.compare(req.body.password, user.password, (error: Error, success: boolean) => {
