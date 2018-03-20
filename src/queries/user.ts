@@ -7,3 +7,13 @@ export function getUserById(userId: number): Bluebird<UserInstance> {
     .then((response) => response)
     .catch((errors) => errors);
 }
+
+export function getUserByEmail(userEmail: string): Bluebird<UserInstance> {
+  return db.user.findAll({
+    where: {
+      email: userEmail
+    }
+  })
+    .then((response) => response)
+    .catch((errors) => errors);
+}
