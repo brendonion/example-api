@@ -4,8 +4,8 @@ import * as express from "express";
 import * as path from "path";
 import * as logger from "morgan";
 import * as errorHandler from "errorhandler";
-import * as expressValidator from 'express-validator';
 import initApi from "./routes/api";
+import AuthController from "./controllers/AuthController";
 
 /**
  * The server.
@@ -55,9 +55,6 @@ export default class Server {
     // Mount json form parser
     this.app.use(bodyParser.json());
 
-    // Mount express validator
-    this.app.use(expressValidator());
-
     // Mount query string parser
     this.app.use(bodyParser.urlencoded({
       extended: true
@@ -68,9 +65,12 @@ export default class Server {
 
     // Mount cookie parser middleware
     this.app.use(cookieParser("SECRET_GOES_HERE"));
-    
+   
     // Error handling
     this.app.use(errorHandler());
+
+    // Initialize Authorization
+    this.app.use(AuthController.initialize());
 
     // Catch 404 and forward to error handler
     this.app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -79,11 +79,11 @@ export default class Server {
     });
 
     // Handle authenticated routes
-    this.app.all(process.env.API_BASE + "*", (req: express.Request, res: express.Response, next: any) => {
-      if (req.path.includes(process.env.API_BASE + "/login")) return next();
+    this.app.all(process.env.API_BASE + "/*", (req: express.Request, res: express.Response, next: any) => {
+      if (req.path.includes(process.env.API_BASE + "/login") || req.path.includes(process.env.API_BASE + "/signup")) return next();
 
-      return auth.authenticate((err: Error, user: any, info: any) => {
-        if (err) { return next(err); }
+      return AuthController.authenticate((err: Error, user: any, info: any) => {
+        if (err) return next(err);
         if (!user) {
           if (info.name === "TokenExpiredError") {
             return res.status(401).json({ message: "Your token has expired. Please generate a new one" });
