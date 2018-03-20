@@ -54,7 +54,7 @@ class AuthController {
 
       const user = await getUserByEmail(req.body.email);
 
-      if (user === null) throw "User not found";
+      if (!user) throw "User not found";
 
       bcrypt.compare(req.body.password, user.password, (error: Error, success: boolean) => {
         if (error) throw `An error occurred: ${error}`;
@@ -90,7 +90,7 @@ class AuthController {
     return new Strategy(params, async (req: express.Request, payload: any, done: any) => {
       try {
         const user = await getUserByEmail(payload.email);
-        if (user === null) {
+        if (!user) {
           return done(null, false, { message: "The user in the token was not found" });
         }
         return done(null, { id: user.id, email: user.email });

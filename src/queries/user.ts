@@ -1,5 +1,4 @@
 import * as Bluebird from "bluebird";
-import * as bcrypt from "bcryptjs";
 import db from "../database/models";
 import { UserInstance } from "../database/models/user";
 
