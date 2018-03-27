@@ -36,11 +36,7 @@ class AuthController {
           req.body.email,
           hash
         );
-        const response: Object = {
-          first_name: newUser.first_name,
-          last_name: newUser.last_name,
-          email: newUser.email,
-        };
+        const { password, ...response } = newUser;
     
         res.status(200).json(response);
       } catch (error) {
